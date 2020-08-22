@@ -1,0 +1,16 @@
+<div class="rjc-sidebar"
+    [ngClass]="{ 'rjc-sidebar-collapsed': !(showSideNav | async) }">
+    <div class="rjc-sidebar-overlay" 
+    [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
+    [ngClass]="{ 'rjc-sidebar-overlay-collapsed': !(showSideNav | async) }"
+        (click)="onSidebarClose()"></div>
+    <div class="rjc-sidebar-menu-container" 
+    [ngStyle]="{
+        'transition': direction + ' ' + duration + 's, visibility ' + duration + 's',
+        'width': navWidth + 'px', 
+        'left': direction === 'left' ? (((showSideNav | async) ? 0 : (navWidth * -1)) + 'px') : null,
+        'right': direction === 'right' ? (((showSideNav | async) ? 0 : (navWidth * -1)) + 'px') : null }">
+        <div><span class="material-icons sidebar-close" (click)="onSidebarClose()">clear</span></div>
+        <ng-container *ngTemplateOutlet="sidenavTemplateRef"></ng-container>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+.sidebar-content {
+    flex: 1;
+    padding: 32px;
+
+    .sidebar-menu {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    li {
+        font-size: 1.25em;
+        margin-bottom: 32px;
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+    }
+}
