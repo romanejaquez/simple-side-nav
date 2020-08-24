@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { SideNavDirection } from './side-nav-direction';
 
 @Component({
@@ -19,13 +18,7 @@ export class SideNavComponent implements OnInit {
   @Input() navWidth: number = window.innerWidth;
   @Input() direction: SideNavDirection = SideNavDirection.Left;
   
-  constructor(
-    private navService: NavigationService,
-    private router: Router) {
-      router.events.subscribe((val) => {
-        this.onSidebarClose();
-      });
-    }
+  constructor(private navService: NavigationService){}
 
   ngOnInit(): void {
     this.showSideNav = this.navService.getShowNav();
@@ -35,8 +28,13 @@ export class SideNavComponent implements OnInit {
     this.navService.setShowNav(false);
   }
 
-  onNavigationSelection() {
-    //TODO: navigate to the page
-    //associated with the selected menu link
+  getSideNavBarStyle(showNav: boolean) {
+    let navBarStyle: any = {};
+    
+    navBarStyle.transition = this.direction + ' ' + this.duration + 's, visibility ' + this.duration + 's';
+    navBarStyle.width = this.navWidth + 'px';
+    navBarStyle[this.direction] = (showNav ? 0 : (this.navWidth * -1)) + 'px';
+    
+    return navBarStyle;
   }
 }

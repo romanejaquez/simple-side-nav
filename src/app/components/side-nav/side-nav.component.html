@@ -1,16 +1,23 @@
-<div class="rjc-sidebar"
-    [ngClass]="{ 'rjc-sidebar-collapsed': !(showSideNav | async) }">
-    <div class="rjc-sidebar-overlay" 
+<!-- side bar main wrapper -->
+<div class="side-nav-bar"
+    [ngClass]="{ 'side-nav-bar-collapsed': !(showSideNav | async) }">
+    
+    <!-- overlay -->
+    <div class="side-nav-bar-overlay" 
     [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
-    [ngClass]="{ 'rjc-sidebar-overlay-collapsed': !(showSideNav | async) }"
+    [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showSideNav | async) }"
         (click)="onSidebarClose()"></div>
-    <div class="rjc-sidebar-menu-container" 
-    [ngStyle]="{
-        'transition': direction + ' ' + duration + 's, visibility ' + duration + 's',
-        'width': navWidth + 'px', 
-        'left': direction === 'left' ? (((showSideNav | async) ? 0 : (navWidth * -1)) + 'px') : null,
-        'right': direction === 'right' ? (((showSideNav | async) ? 0 : (navWidth * -1)) + 'px') : null }">
-        <div><span class="material-icons sidebar-close" (click)="onSidebarClose()">clear</span></div>
-        <ng-container *ngTemplateOutlet="sidenavTemplateRef"></ng-container>
+    
+    <!-- side bar-->
+    <div class="side-nav-bar-menu-container" 
+    [ngStyle]="getSideNavBarStyle((showSideNav | async))">
+        
+        <!-- close button -->
+        <div><span class="material-icons side-nav-bar-close" (click)="onSidebarClose()">clear</span></div>
+
+        <!-- side bar content -->
+        <div class="side-nav-bar-content-container">
+            <ng-container *ngTemplateOutlet="sidenavTemplateRef"></ng-container>
+        </div>
     </div>
 </div>

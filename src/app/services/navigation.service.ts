@@ -1,14 +1,19 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationService implements OnInit {
 
-  showNav$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private showNav$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() { }
+  constructor(private router: Router) {
+    router.events.subscribe(() => {
+      this.setShowNav(false);
+    });
+  }
 
   ngOnInit() {
   }
@@ -23,5 +28,9 @@ export class NavigationService implements OnInit {
 
   toggleNavState() {
     this.showNav$.next(!this.showNav$.value);
+  }
+
+  isNavOpen() {
+    return this.showNav$.value;
   }
 }

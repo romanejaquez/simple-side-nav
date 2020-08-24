@@ -1,4 +1,4 @@
-.rjc-sidebar {
+.side-nav-bar {
     position: fixed;
     z-index: 1001;
     top: 0;
@@ -6,13 +6,13 @@
     left: 0;
     right: 0;
 
-    .rjc-sidebar-overlay {
+    .side-nav-bar-overlay {
         background: rgba(0,0,0,0.5);
         width: 100%;
         height: 100%;
     }
 
-    .rjc-sidebar-menu-container {
+    .side-nav-bar-menu-container {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -20,19 +20,23 @@
         display: flex;
         flex-direction: column;
 
-        .sidebar-close {
+        .side-nav-bar-close {
             display: inline-block;
             font-size: 2.5em;
             margin: 24px 0px 0px 24px;
             cursor: pointer;
         }
     }
+
+    .side-nav-bar-content-container {
+        padding: 32px;
+    }
 }
 
-.rjc-sidebar-overlay-collapsed {
+.side-nav-bar-overlay-collapsed {
     background: transparent !important;
 }
 
-.rjc-sidebar-collapsed {
+.side-nav-bar-collapsed {
     visibility: collapse !important;
 }
